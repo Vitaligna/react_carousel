@@ -48,9 +48,12 @@ const Carousel: React.FC<Props> = ({
 
   const translateX = -(position * itemWidth);
 
+  const isPrevDisabled = !infinite && position === 0;
+  const isNextDisabled = !infinite && position === maxPosition;
+
   return (
     <div className="Carousel">
-      <button type="button" onClick={handlePrev}>
+      <button type="button" onClick={handlePrev} disabled={isPrevDisabled}>
         Prev
       </button>
 
@@ -77,7 +80,12 @@ const Carousel: React.FC<Props> = ({
         </ul>
       </div>
 
-      <button type="button" onClick={handleNext} data-cy="next">
+      <button
+        type="button"
+        onClick={handleNext}
+        data-cy="next"
+        disabled={isNextDisabled}
+      >
         Next
       </button>
     </div>
